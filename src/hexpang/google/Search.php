@@ -15,13 +15,13 @@ class Search
     {
         $this->baseURL = 'https://www.google.com/search?client=safari&q={key}&start={offset}&rls=en&ie=UTF-8&oe=UTF-8';
     }
-    public function byKey($keyword, $offset = 0)
+    public function byKey($keyword, $offset = 0, $option = null)
     {
         $u = str_ireplace('{offset}', $offset, $this->baseURL);
         $u = str_ireplace('{key}', $keyword, $u);
 
         $client = new \GuzzleHttp\Client();
-        $source = $client->request('GET', $u, ['proxy' => 'http://127.0.0.1:7777']);
+        $source = $client->request('GET', $u, $option);
         $source = (string) $source->getBody();
         $html = str_get_html($source);
         $result = $html->find('div[class=g]');
