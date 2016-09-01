@@ -15,7 +15,7 @@ class Search
     {
         $this->baseURL = 'https://www.google.com/search?client=safari&q={key}&start={offset}&rls=en&ie=UTF-8&oe=UTF-8';
     }
-    public function byKey($keyword, $offset = 0, $option = null)
+    public function byKey($keyword, $offset = 0, $option = [])
     {
         $u = str_ireplace('{offset}', $offset, $this->baseURL);
         $u = str_ireplace('{key}', $keyword, $u);
